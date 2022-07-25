@@ -2,7 +2,9 @@ import * as PIXI from 'pixi.js';
 import {AssetsManager} from '../managers/AssetsManager';
 
 export class ImageMarginButton extends PIXI.Sprite {
+
 	private type: string;
+	private pressed: boolean = false;
 
 	constructor(type: string, margin: number | Array<number> = 0) {
 
@@ -50,25 +52,34 @@ export class ImageMarginButton extends PIXI.Sprite {
 	private onPointerEvent = (event: MouseEvent) => {
 
 		switch (event.type) {
+
 			case 'pointerover':
+
 				this.texture = AssetsManager.instance.getTexture(this.type + '_over');
 				break;
 
 			case 'pointerout':
+
 				this.texture = AssetsManager.instance.getTexture(this.type);
 				break;
 
 			case 'pointerdown':
+
 				this.texture = AssetsManager.instance.getTexture(this.type + '_over');
+				this.pressed = true;
 				break;
 
 			case 'pointerupoutside':
+
 				this.texture = AssetsManager.instance.getTexture(this.type);
+				this.pressed = false;
 				break;
 
 			case 'pointerup':
+
 				this.texture = AssetsManager.instance.getTexture(this.type);
-				this.emit('press');
+				if (this.pressed == true) this.emit('press');
+				this.pressed = false;
 				break;
 
 		}

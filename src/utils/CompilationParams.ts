@@ -1,1 +1,1 @@
-export class CompilationParams { public static COMPILATION_DATE: string = "20.07.2022 07:01:06 UTC"; }
+export class CompilationParams { public static COMPILATION_DATE: string = "25.07.2022 11:27:59 UTC"; }

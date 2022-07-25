@@ -1,3 +1,3 @@
-var showhelp_var = "template_showhelp";
-var completed_var = "template_completed";
-var store_var = "template_store";
+var showhelp_var = "template-moveover_showhelp";
+var completed_var = "template-moveover_completed";
+var store_var = "template-moveover_store";

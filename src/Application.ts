@@ -1,9 +1,9 @@
 import * as PIXI from 'pixi.js';
-import { Main } from './Main';
-import { FullScreenManager } from './managers/FullScreenManager';
-import { StorylineManager } from './managers/StorylineManager';
-import { FontsManager } from './managers/FontsManager';
-import { CompilationParams } from './utils/CompilationParams';
+import {Main} from './Main';
+import {FullScreenManager} from './managers/FullScreenManager';
+import {StorylineManager} from './managers/StorylineManager';
+import {FontsManager} from './managers/FontsManager';
+import {CompilationParams} from './utils/CompilationParams';
 
 export class Application {
 	private static _instance: Application;
@@ -16,17 +16,22 @@ export class Application {
 	private main!: Main;
 
 	public static get instance(): Application {
-		
+
 		if (Application._instance == null) Application._instance = new Application();
 		return Application._instance;
 	}
 
 	constructor() {
 
-		this.application = new PIXI.Application({ width: Application.WIDTH, height: Application.HEIGHT, antialias: true, backgroundColor: 0xffffff, resolution: 1 });
+		this.application = new PIXI.Application({width: Application.WIDTH, height: Application.HEIGHT, antialias: true, backgroundColor: 0xffffff, resolution: 1});
 		this.renderer.view.style.display = 'none';
 
-		this.renderer.view.style.border = 'solid 1px #d2d2d2';
+		if (!StorylineManager.instance.inPlayer) {
+
+			Main.DEBUG = true;
+			this.renderer.view.style.border = 'solid 1px #d2d2d2';
+		}
+
 		document.body.appendChild(this.application.view);
 		document.documentElement.style.overflow = 'hidden';
 
