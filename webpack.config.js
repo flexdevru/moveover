@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
+const { WebpackPrebuildPlugin } = require('webpack-prebuild-plugin');
 
 //const URL_LOADER_LIMIT = 8192
 
@@ -29,7 +30,7 @@ module.exports = {
 				exclude: path.resolve(__dirname, './src/variables.js'),
 			}
 		]
-    },
+	},
 	//devtool: 'inline-source-map',
 	performance: {
 		hints: false,
@@ -86,6 +87,7 @@ module.exports = {
 					info: { minimized: true },
 				}
 			],
-		})
-	]	
+		}),
+		new WebpackPrebuildPlugin()
+	]
 }
